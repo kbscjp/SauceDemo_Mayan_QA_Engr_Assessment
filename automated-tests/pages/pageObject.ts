@@ -18,6 +18,8 @@ export class SauceDemoWeb {
     readonly continueButton: Locator
     readonly finishButton: Locator
     readonly orderAcknowledgment: Locator
+    readonly menuButton: Locator
+    readonly logOut: Locator
 
 
     constructor(page: Page) {
@@ -37,7 +39,8 @@ export class SauceDemoWeb {
         this.continueButton = page.locator('#continue')
         this.finishButton = page.locator('#finish')
         this.orderAcknowledgment = page.locator('.complete-header')
-
+        this.menuButton = page.locator('#react-burger-menu-btn')
+        this.logOut = page.locator('#logout_sidebar_link')
     }
 
 
@@ -71,6 +74,9 @@ export class SauceDemoWeb {
         await this.finishButton.click()
     }
 
-
+    async LogOutAfterSuccessfulCheckOut() {
+        await this.menuButton.click()
+        await this.logOut.click()
+    }
 
 }

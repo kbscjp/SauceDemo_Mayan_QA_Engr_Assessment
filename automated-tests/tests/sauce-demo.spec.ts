@@ -33,6 +33,17 @@ test.describe('Sauce Demo Core Flow', () => {
     await expect(sauceDemo.orderAcknowledgment).toHaveText('Thank you for your order!')
   })
 
+  test('Log Out After successful check out', async ({ page }) => {
+    await sauceDemo.addFirstItemToCart()
+    await sauceDemo.gotoCart()
+    await sauceDemo.proceedToCheckOut('Test', 'Data', '12345')
+    await sauceDemo.finishCheckOut()
+    await sauceDemo.LogOutAfterSuccessfulCheckOut()
+    await expect(sauceDemo.sauceDemoLoginURL).toEqual('https://www.saucedemo.com/')
+  })
+
+
+
 })
 
 
